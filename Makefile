@@ -294,9 +294,9 @@ docker-run-deb:
 		apt-key adv --recv-keys --keyserver keyserver.ubuntu.com EA3E6BAEB37CF5E4 ; \
 		apt clean all ; \
 		apt update ; \
-		apt install -y pictures-annotation-service ; \
-		systemctl status pictures-annotation-service ; \
-		systemctl status pictures-annotation-service-worker ; \
+		apt install -y synthetic-monitoring-service ; \
+		systemctl status synthetic-monitoring-service ; \
+		systemctl status synthetic-monitoring-service-worker ; \
 		$$SHELL '
 
 ## Validate latest .rpm package on a local CentOS image with Docker
@@ -313,9 +313,9 @@ docker-run-rpm:
 		useradd -MU www-data && usermod -L www-data ; \
 		echo -e "[geld.tech]\nname=geld.tech\nbaseurl=http://dl.bintray.com/geldtech/rpm\ngpgcheck=0\nrepo_gpgcheck=0\nenabled=1" | \
 			tee -a /etc/yum.repos.d/geld.tech.repo ; \
-		yum install -y pictures-annotation-service ; \
-		systemctl status pictures-annotation-service ; \
-		systemctl status pictures-annotation-service-worker ; \
+		yum install -y synthetic-monitoring-service ; \
+		systemctl status synthetic-monitoring-service ; \
+		systemctl status synthetic-monitoring-service-worker ; \
 		$$SHELL '
 
 

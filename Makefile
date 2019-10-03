@@ -309,6 +309,7 @@ db-status:
 	else \
 		echo "No message queue running.."; \
 	fi
+
 ## Validate latest .deb package on a local Ubuntu image with Docker
 docker-run-deb:
 	$(call echo_title, "DOCKER RUN DEB")

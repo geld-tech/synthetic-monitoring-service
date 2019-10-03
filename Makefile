@@ -280,6 +280,19 @@ mq-stop:
 		docker rm -f `docker ps -a -f "name=rabbitmq"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'`; \
 	fi
 
+## Start background Database
+db-start:
+	$(call echo_title, "START DATABASE")
+	@echo ""
+	@if [ -f "$(LOCAL_DEV_ENV)/influxdb.pid" ]; then \
+		echo "Message queue running"; \
+		docker ps -af "name=influxdb"; \
+	else \
+		docker run -d --hostname influxdb --name influxdb -p 5672:5672 influxdb:3; \
+		sleep 3; \
+		docker ps -qf "name=influxdb" > $(LOCAL_DEV_ENV)/influxdb.pid; \
+	fi
+
 ## Validate latest .deb package on a local Ubuntu image with Docker
 docker-run-deb:
 	$(call echo_title, "DOCKER RUN DEB")

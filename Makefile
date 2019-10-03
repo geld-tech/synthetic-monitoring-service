@@ -293,6 +293,22 @@ db-start:
 		docker ps -qf "name=influxdb" > $(LOCAL_DEV_ENV)/influxdb.pid; \
 	fi
 
+## Check Database
+db-status:
+	$(call echo_title, "STATUS DATABASE")
+	@if [ -f "$(LOCAL_DEV_ENV)/influxdb.pid" ]; then \
+		docker ps -af "name=influxdb"; \
+		echo ""; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_vhosts"; \
+		echo ""; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_connections"; \
+		echo ""; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_channels"; \
+		echo ""; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_queues"; \
+	else \
+		echo "No message queue running.."; \
+	fi
 ## Validate latest .deb package on a local Ubuntu image with Docker
 docker-run-deb:
 	$(call echo_title, "DOCKER RUN DEB")

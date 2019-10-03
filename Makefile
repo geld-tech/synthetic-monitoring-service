@@ -310,6 +310,16 @@ db-status:
 		echo "No message queue running.."; \
 	fi
 
+## Stop Database
+db-stop:
+	$(call echo_title, "STOP DATABASE")
+	@if [ -f "$(LOCAL_DEV_ENV)/influxdb.pid" ]; then \
+		docker rm -f `cat $(LOCAL_DEV_ENV)/influxdb.pid`; \
+		rm -f $(LOCAL_DEV_ENV)/influxdb.pid; \
+	elif [ -n "`docker ps -a -f 'name=influxdb'|grep -iv 'CONTAINER ID'|awk -e '{print $$1}'`" ]; then \
+		docker rm -f `docker ps -a -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'`; \
+	fi
+
 ## Validate latest .deb package on a local Ubuntu image with Docker
 docker-run-deb:
 	$(call echo_title, "DOCKER RUN DEB")

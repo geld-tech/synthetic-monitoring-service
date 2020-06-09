@@ -293,7 +293,7 @@ db-start:
 		echo "Message queue running"; \
 		docker ps -af "name=influxdb"; \
 	else \
-		docker run -d --hostname influxdb --name influxdb -p 8086:8086 -v influxdb:/var/lib/influxdb influxdb:1.6.6; \
+		docker run -d --hostname influxdb --name influxdb -p 8086:8086 -v influxdb:/var/lib/influxdb influxdb:1.8; \
 		sleep 3; \
 		mkdir -p $(LOCAL_DEV_ENV); \
 		docker ps -qf "name=influxdb" > $(LOCAL_DEV_ENV)/influxdb.pid; \

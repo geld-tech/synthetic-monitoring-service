@@ -305,13 +305,11 @@ db-status:
 	@if [ -f "$(LOCAL_DEV_ENV)/influxdb.pid" ]; then \
 		docker ps -af "name=influxdb"; \
 		echo ""; \
-		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_vhosts"; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxd"; \
 		echo ""; \
-		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_connections"; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influx -version"; \
 		echo ""; \
-		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_channels"; \
-		echo ""; \
-		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_queues"; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influx -execute 'SHOW DATABASES'"; \
 	else \
 		echo "No InfluxDB running running.."; \
 	fi

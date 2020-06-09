@@ -312,7 +312,7 @@ db-status:
 		echo ""; \
 		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxdbctl list_queues"; \
 	else \
-		echo "No message queue running.."; \
+		echo "No InfluxDB running running.."; \
 	fi
 
 ## Stop Database

@@ -21,7 +21,7 @@ PORT=5000
 WAIT=10
 
 # Conditional Processing
-NPM_AUDIT=true
+NPM_AUDIT=false
 
 # MQ Variables
 export MQ_USER:=mquser
@@ -114,11 +114,14 @@ local-dev-env: clean
 		mv $(LOCAL_CACHE)/node_modules/ $(LOCAL_DEV_ENV)/webapp/ ||: ; \
 		set +x; \
 	fi
+	@echo "== Prepare H5 model =="
+	@echo "TODO"
 
 ## Ensure Vue application is built with DevTools enabled (requires Firefox or Chrome plugin)
 vue-dev-tools:
 	$(call echo_title, "VUE DEVTOOLS")
 	sed -i '/Vue.config.productionTip = false/a Vue.config.devtools = true' $(LOCAL_DEV_ENV)/webapp/src/main.js
+	sed -i '/Vue.config.productionTip = false/a Vue.config.devtools = true' $(LOCAL_DEV_ENV)/webapp/src/store/store.js
 
 ## Install NPM Modules in local dev environment
 npm-install: local-dev-env
@@ -130,10 +133,12 @@ npm-lint: npm-install
 	$(call echo_title, "NPM LINT")
 	cd $(NPM_DEV_ENV) ; npm run lint
 
-## Runs NPM audit to flag security issues
+## Runs NPM audit to flag security issues (disable with make NPM_AUDIT=false)
 npm-audit: npm-install
-	# On case of a failure, run conditionally using the - prefix (see command  below):
-	#	-cd $(NPM_DEV_ENV) ; npm audit   # Failures ignored locally with -, but will be executed on Travis before distribution
+	# To run conditionally, as not installed on all systems, or to ignore some known failures or (yet) unresolved vulnerabilities, use true:
+	# e.g. failures will be ignored on local development, but be enforced on Travis before distribution
+	#
+	#	cd $(NPM_DEV_ENV) ; npm audit || true; \
 	#
 	# Or, upgrade nodejs/npm such as the following on CentOS/EL 7 systems via repository:
 	#	/usr/bin/yum remove -y nodejs
@@ -142,14 +147,11 @@ npm-audit: npm-install
 	#	/bin/rm /etc/yum.repos.d/nodesource*
 	#	/usr/bin/curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 	#
-	# Conditionally as not installed on all systems, and can fail due to unresolved vulnerabilities
-	# NPM Audit introduced in npm 6
 	$(call echo_title, "NPM AUDIT")
 	@if [ "$(NPM_AUDIT)" == "true" ]; then \
-		cd $(NPM_DEV_ENV) ; \
-		npm audit ; \
+		cd $(NPM_DEV_ENV) ; npm audit; \
 	else \
-		echo "Bypassing audit.." ; \
+		echo "Bypassing NPM AUDIT as specified with NPM_AUDIT=$(NPM_AUDIT) .." ; \
 	fi
 
 ## Runs a full build using NPM
@@ -176,6 +178,9 @@ webapp-settings:
 	@echo "" >> $(SRV_DEV_ENV)/config/settings.cfg.dev
 	@echo "[ganalytics]" >> $(SRV_DEV_ENV)/config/settings.cfg.dev
 	@echo "ua_id = 1234567" >> $(SRV_DEV_ENV)/config/settings.cfg.dev
+	@echo "" >> $(SRV_DEV_ENV)/config/settings.cfg.dev
+	@echo "[model]" >> $(SRV_DEV_ENV)/config/settings.cfg.dev
+	@echo "file = tl_trained_weights.h5" >> $(SRV_DEV_ENV)/config/settings.cfg.dev
 
 ## Configure stub settings.cfg
 webapp-config: webapp-settings
@@ -186,7 +191,7 @@ upload:
 	$(call echo_title, "UPLOAD")
 	@curl -v -H "Content-Type: multipart/form-data" -X POST -F "files=@tests/wolf_01.jpg" http://0.0.0.0:5000/upload
 
-## Check status of a task (CLI overridable parameter: TASK_ID)
+## Check status of a task with ID provided via CLI (e.g. make task-status TASK_ID=<task_id>)
 task-status:
 	$(call echo_title, "TASK ID STATUS: $(TASK_ID)")
 	@echo "NOTE: Provide task ID via command line"
@@ -200,7 +205,7 @@ worker-start:
 	$(call echo_title, "START WORKER DAEMON")
 	@echo "Starting background worker daemon locally, use 'make worker-stop' to terminate.."
 	@echo ""
-	cd $(SRV_DEV_ENV); celery multi start worker -A worker -Q $(PACKAGE_NAME) -c 3 -f "celery-%n.log" -l info --pidfile="celery-%n.pid" --without-gossip
+	cd $(SRV_DEV_ENV); celery multi start worker -A worker -Q $(PACKAGE_NAME) -c 3 -f "celery-%n.log" -l INFO --pidfile="celery-%n.pid" --without-gossip
 	@echo ""
 	@sleep 3
 
@@ -228,7 +233,7 @@ worker-status:
 ## Start web application
 webapp-start:
 	$(call echo_title, "START WEB APPLICATION")
-	@python -c  "import os; print os.urandom(24)" > $(SRV_DEV_ENV)/config/secret.uti
+	@python -c  "import os; print(os.urandom(24));" > $(SRV_DEV_ENV)/config/secret.uti
 	@echo "Starting web application locally, use 'make webapp-stop' to terminate.."
 	@echo ""
 	python $(SRV_DEV_ENV)/application.py &

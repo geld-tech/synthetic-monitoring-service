@@ -21,7 +21,7 @@ PORT=5000
 WAIT=10
 
 # Conditional Processing
-NPM_AUDIT=false
+NPM_AUDIT=true
 
 # MQ Variables
 export MQ_USER:=mquser

@@ -323,7 +323,7 @@ def upload():
                 f.save(os.path.join(task_dir, filename))
                 filenames.append(filename)
         # Sending task to MQ
-        task = pidentify.apply_async(args=[filenames], queue="__PACKAGE_NAME__", task_id=task_id)
+        task = predict_metrics.apply_async(args=[filenames], queue="__PACKAGE_NAME__", task_id=task_id)
         logger.info("Celery Queued Task ID: %s" % task.task_id)
         return jsonify({"data": {"response": "Success!", "files": filenames}, "task_id": task.task_id}), 200
     else:

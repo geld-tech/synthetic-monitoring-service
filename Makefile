@@ -87,7 +87,9 @@ lint:
 ## Run unit tests
 test:
 	$(call echo_title, "PYTHON UNIT TESTS")
+	@python -c  "import os; print(os.urandom(24));" > `pwd`/sources/server/config/secret.uti
 	python -m unittest discover -s tests/unit_test
+	@rm -f `pwd`/sources/server/config/secret.uti
 
 ## Run UI Tests (CLI overridable parameters: PROTO, HOST, PORT, WAIT)
 test-ui:

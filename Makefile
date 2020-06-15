@@ -93,7 +93,7 @@ test:
 test-ui:
 	$(call echo_title, "PYTHON SELENIUM UI TESTS")
 	@echo "Executing UI tests on $(PROTO)://$(HOST):$(PORT) (delay of $(WAIT) seconds)"
-	ls tests/uiTest*.py | xargs -i python {} --proto=$(PROTO) --host=$(HOST) --port=$(PORT) --delay=$(WAIT)
+	ls tests/ui_test/*.py | xargs -i python {} --proto=$(PROTO) --host=$(HOST) --port=$(PORT) --delay=$(WAIT)
 
 ## Prepare local development environment
 local-dev-env: clean

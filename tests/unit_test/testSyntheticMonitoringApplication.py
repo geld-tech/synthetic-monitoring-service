@@ -19,11 +19,12 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
 
     def test_evaluate_data(self):
         """application.evaluate_data()"""
-        data = b'{"password":"123456"}'
-        evaluated_data = evaluate_data(data)
-        print("evaluated_data %s %s" % (evaluated_data, type(evaluated_data)))
-        print(type(evaluated_data['password']))
-
+        data1 = b'{"password":"123456"}'
+        evaluated_data = evaluate_data(data1)
+        self.assertIsInstance(evaluated_data, dict)
+        self.assertEqual(evaluated_data, {'password': '123456'})
+        self.assertIsInstance(evaluated_data['password'], str)
+        self.assertEqual(evaluated_data['password'], '123456')
 
     def test_get(self):
         """Data getter"""

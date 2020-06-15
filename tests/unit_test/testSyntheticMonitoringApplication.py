@@ -3,7 +3,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../sources/server/')
 import unittest
 
-import application
+from application import *
 
 
 class TestSyntheticMonitoringApplication(unittest.TestCase):

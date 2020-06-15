@@ -154,9 +154,7 @@ def set_password():
 
 
 def evaluate_data(data):
-    print( "DEBUG %s %s " % (data, type(data)))
-    evaluated_data = ast.literal_eval(data)
-    return evaluated_data
+    return ast.literal_eval(str(data))
 
 
 def colors_generator():

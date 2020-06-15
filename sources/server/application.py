@@ -139,7 +139,6 @@ def status():
 @authenticated
 def set_password():
     if request.method == 'POST':
-        print("DEBUG %s %s " % (request.data, type(request.data)))
         data = evaluate_data(request.data)
         if 'password' in data:
             password = sanitize_user_input(data['password'])
@@ -154,6 +153,7 @@ def set_password():
 
 
 def evaluate_data(data):
+    ''' Safely evaluates data '''
     return ast.literal_eval(str(data))
 
 

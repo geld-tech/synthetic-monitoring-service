@@ -8,14 +8,26 @@ import mock
 
 from application import evaluate_data
 
+# Global config
+local_path = os.path.dirname(os.path.abspath(__file__))
+config_file = local_path+'/config/settings.cfg'
+secret_file = local_path+'/config/secret.uti'
+upload_dir = local_path+'/data/'
 
 class TestSyntheticMonitoringApplication(unittest.TestCase):
     """TestSyntheticMonitoringApplication Unit Tests"""
 
-    def test_init(self):
-        """Instatiation"""
-        #nginx_status = Nginx()
-        pass
+    def setUp(self):
+        """Initialisation"""
+        default_stdout = sys.stdout
+        with open(secret_file, 'w') as f:
+            sys.stdout = f # Change the standard output to the file we created.
+            print(os.urandom(24))
+        sys.stdout = default_stdout
+
+    def tearDown(self):
+        """Cleaning-up resources used"""
+        os.remove(secret_file)
 
     def test_evaluate_data(self):
         """application.evaluate_data()"""

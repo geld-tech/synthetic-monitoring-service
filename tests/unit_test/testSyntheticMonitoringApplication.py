@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../../sources/serve
 import unittest
 import mock
 
-from application import set_password
+from application import evaluate_data
 
 
 class TestSyntheticMonitoringApplication(unittest.TestCase):
@@ -17,11 +17,12 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
         #nginx_status = Nginx()
         pass
 
-    def test_set_password(self):
-        """application.set_password()"""
+    def test_evaluate_data(self):
+        """application.evaluate_data()"""
         data = b'{"password":"123456"}'
-        with mock.patch("flask.request.data", data):
-            set_password()
+        evaluated_data = evaluate_data(data)
+        print("evaluated_data %s %s" % (evaluated_data, type(evaluated_data)))
+
 
     def test_get(self):
         """Data getter"""

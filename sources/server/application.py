@@ -139,7 +139,8 @@ def status():
 @authenticated
 def set_password():
     if request.method == 'POST':
-        data = ast.literal_eval(request.data)
+        print "DEBUG %s %s " % (request.data, type(request.data))
+        data = evaluate_data(request.data)
         if 'password' in data:
             password = sanitize_user_input(data['password'])
             if store_password(password):
@@ -150,6 +151,12 @@ def set_password():
             return jsonify({"data": {}, "error": "Password needs to be specified"}), 500
     else:
         return jsonify({"data": {}, "error": "Incorrect request method"}), 500
+
+
+def evaluate_data(data):
+    print "DEBUG %s %s " % (data, type(data))
+    evaluated_data = ast.literal_eval(data)
+    return evaluated_data
 
 
 def colors_generator():

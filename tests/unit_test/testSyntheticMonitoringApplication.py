@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../../sources/server/')
+sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../../sources/server')
 import unittest
 import mock
 
@@ -10,9 +10,9 @@ from application import evaluate_data
 
 # Global config
 local_path = os.path.dirname(os.path.abspath(__file__))
-config_file = local_path+'/config/settings.cfg'
-secret_file = local_path+'/config/secret.uti'
-upload_dir = local_path+'/data/'
+config_file = local_path+'/../../sources/server'+'/config/settings.cfg'
+secret_file = local_path+'/../../sources/server'+'/config/secret.uti'
+upload_dir = local_path+'/data'
 
 class TestSyntheticMonitoringApplication(unittest.TestCase):
     """TestSyntheticMonitoringApplication Unit Tests"""
@@ -21,7 +21,7 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
         """Initialisation"""
         default_stdout = sys.stdout
         with open(secret_file, 'w') as f:
-            sys.stdout = f # Change the standard output to the file we created.
+            sys.stdout = f  # Redirect standard output to created file
             print(os.urandom(24))
         sys.stdout = default_stdout
 

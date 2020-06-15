@@ -22,6 +22,7 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
         data = b'{"password":"123456"}'
         evaluated_data = evaluate_data(data)
         print("evaluated_data %s %s" % (evaluated_data, type(evaluated_data)))
+        print(type(evaluated_data['password']))
 
 
     def test_get(self):

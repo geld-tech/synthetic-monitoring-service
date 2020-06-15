@@ -87,7 +87,7 @@ lint:
 ## Run unit tests
 test:
 	$(call echo_title, "PYTHON UNIT TESTS")
-	python -m unittest discover -s tests
+	python -m unittest discover -s tests/unit_test
 
 ## Run UI Tests (CLI overridable parameters: PROTO, HOST, PORT, WAIT)
 test-ui:

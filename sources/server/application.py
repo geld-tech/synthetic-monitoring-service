@@ -154,7 +154,7 @@ def set_password():
 
 
 def evaluate_data(data):
-    print "DEBUG %s %s " % (data, type(data))
+    print( "DEBUG %s %s " % (data, type(data)))
     evaluated_data = ast.literal_eval(data)
     return evaluated_data
 

@@ -154,7 +154,8 @@ def set_password():
 
 def evaluate_data(data):
     ''' Safely evaluates data '''
-    data = data.decode("UTF-8")
+    if type(data) == bytes:
+        data = data.decode("UTF-8")
     return ast.literal_eval(data)
 
 

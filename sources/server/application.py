@@ -139,6 +139,7 @@ def status():
 @authenticated
 def set_password():
     if request.method == 'POST':
+        print("DEBUG %s %s" % (request.data, type(request.data)))
         data = ast.literal_eval(request.data)
         if 'password' in data:
             password = sanitize_user_input(data['password'])

@@ -20,7 +20,7 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
     def test_set_password(self):
         """application.set_password()"""
         data = b'{"password":"123456"}'
-        with mock.patch("request.data", data):
+        with mock.patch("flask.request.data", data):
             set_password()
 
     def test_get(self):

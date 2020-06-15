@@ -4,6 +4,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../../sources/server/')
 import unittest
+import mock
 
 from application import set_password
 
@@ -14,9 +15,13 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
     def test_init(self):
         """Instatiation"""
         #nginx_status = Nginx()
-        #data = ast.literal_eval('{"password": "pass"}')
-        #data = ast.literal_eval(b'{"password":"123456"}')
         pass
+
+    def test_set_password(self):
+        """application.set_password()"""
+        data = b'{"password":"123456"}'
+        with mock.patch("request.data", data):
+            set_password()
 
     def test_get(self):
         """Data getter"""

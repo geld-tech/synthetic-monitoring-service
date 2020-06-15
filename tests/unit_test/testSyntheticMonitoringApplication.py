@@ -3,7 +3,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../sources/server/')
 import unittest
 
-from application import set_password
+from sources.server.application import set_password
 
 
 class TestSyntheticMonitoringApplication(unittest.TestCase):

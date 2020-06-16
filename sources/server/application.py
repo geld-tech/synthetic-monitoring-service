@@ -261,7 +261,10 @@ def get_ua_id():
             if 'ganalytics' in config.sections():
                 ua_id = config.get('ganalytics', 'ua_id')
     except Exception as e:
-        logger.error('Error while retrieving UA ID: %s' % e)
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        del exc_type
+        del exc_obj
+        logger.error('Error while retrieving UA ID (line %d): %s' % (exc_tb.tb_lineno, e))
     finally:
         return ua_id
 

@@ -312,9 +312,9 @@ def obfuscate(text, decode=False):
         if type(text) == bytes:
             text = str(text)
         if decode:
-            return base64.b64decode(codecs.decode(text, 'rot-13'))
+            return base64.b64decode(codecs.decode(text, 'rot-13').encode('utf-8'))
         else:
-            return base64.b64encode(codecs.encode(text, 'rot-13'))
+            return base64.b64encode(codecs.encode(text, 'rot-13').encode('utf-8'))
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         del exc_type

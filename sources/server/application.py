@@ -228,7 +228,7 @@ def store_password(password):
 @authenticated
 def set_ganalytics():
     if request.method == 'POST':
-        data = ast.literal_eval(request.data)
+        data = evaluate_data(request.data)
         if 'uaid' in data:
             ua_id = sanitize_user_input(data['uaid'])
             if store_ua_id(ua_id):

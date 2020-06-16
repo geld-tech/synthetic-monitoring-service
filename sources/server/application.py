@@ -108,7 +108,10 @@ def index():
 
         return render_template('index.html', settings=settings, ga_ua_id=ganalytics_id)
     except Exception as e:
-        logger.error('Error serving web application: %s' % e)
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        del exc_type
+        del exc_obj
+        logger.error('Error serving web application (line %d): %s' % (exc_tb.tb_lineno, e))
         return jsonify({'data': {}, 'error': 'Could serve web application, check logs for more details..'}), 500
 
 

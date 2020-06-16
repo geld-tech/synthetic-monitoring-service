@@ -7,6 +7,7 @@ from __future__ import absolute_import, unicode_literals
 
 import ast
 import base64
+import codecs
 import logging
 import logging.handlers
 import os
@@ -310,9 +311,9 @@ def sanitize_user_input(word):
 def obfuscate(text, decode=False):
     try:
         if decode:
-            return base64.b64decode(decode(text, 'rot13'))
+            return base64.b64decode(codecs.decode(text, 'rot-13'))
         else:
-            return base64.b64encode(encode(text, 'rot13'))
+            return base64.b64encode(codecs.encode(text, 'rot-13'))
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         del exc_type

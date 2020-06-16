@@ -173,7 +173,7 @@ def colors_generator():
 def login():
     global config_file
     if request.method == 'POST':
-        data = ast.literal_eval(request.data)
+        data = evaluate_data(request.data)
         if 'password' in data and os.path.isfile(config_file):
             config = ConfigParser.ConfigParser()
             config.readfp(open(config_file))

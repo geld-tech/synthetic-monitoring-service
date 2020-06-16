@@ -7,6 +7,7 @@ import mock
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../../sources/server/')
 from application import evaluate_data
+from application import obfuscate
 
 class TestSyntheticMonitoringApplication(unittest.TestCase):
     """TestSyntheticMonitoringApplication Unit Tests"""
@@ -35,6 +36,17 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
         self.assertEqual(evaluated_data, {'password': '123456'})
         self.assertIsInstance(evaluated_data['password'], str)
         self.assertEqual(evaluated_data['password'], '123456')
+
+    def test_obfuscate(self):
+        """application.obfuscate()"""
+        # Test with a Bytes input like
+        text1 = b'SecretText1234!$&%'
+        evaluated_text = obfuscate(text1)
+        print("evaluated_text %s %s" % (evaluated_text, type(evaluated_text)))
+        # Test with a String input
+        text2 = b'SecretText1234!$&%'
+        evaluated_text = obfuscate(text2)
+        print("evaluated_text %s %s" % (evaluated_text, type(evaluated_text)))
 
 if __name__ == '__main__':
     unittest.main()

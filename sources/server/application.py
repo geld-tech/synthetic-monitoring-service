@@ -226,7 +226,7 @@ def store_password(password):
             config.write(outfile)
 
         return True
-    except Exception:
+    except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         del exc_type
         del exc_obj

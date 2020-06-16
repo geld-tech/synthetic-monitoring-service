@@ -84,6 +84,9 @@ lint:
 	$(call echo_title, "PYTHON LINTER")
 	flake8 sources/server/ --show-source --max-line-length=239 --max-complexity=10 --statistics --count
 
+## Run all tests (unit tests and UI tests)
+tests: test test-ui
+
 ## Run unit tests
 test:
 	$(call echo_title, "PYTHON UNIT TESTS")

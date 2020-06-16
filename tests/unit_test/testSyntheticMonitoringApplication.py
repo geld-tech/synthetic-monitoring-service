@@ -5,7 +5,8 @@ import sys
 import unittest
 import mock
 
-from ...sources.server.application import evaluate_data
+sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../../sources/server/')
+from application import evaluate_data
 
 class TestSyntheticMonitoringApplication(unittest.TestCase):
     """TestSyntheticMonitoringApplication Unit Tests"""

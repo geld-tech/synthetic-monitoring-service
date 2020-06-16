@@ -314,7 +314,10 @@ def obfuscate(text, decode=False):
         else:
             return base64.b64encode(encode(text, 'rot13'))
     except Exception as e:
-        logger.error('Error while encoding or decoding text: %s' % e)
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        del exc_type
+        del exc_obj
+        logger.error('Error while encoding or decoding text (line %d): %s' % (exc_tb.tb_lineno, e))
         return text
 
 

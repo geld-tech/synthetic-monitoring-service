@@ -227,6 +227,10 @@ def store_password(password):
 
         return True
     except Exception:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        del exc_type
+        del exc_obj
+        logger.error('Error storing password (line %d): %s' % (exc_tb.tb_lineno, e))
         return False
 
 

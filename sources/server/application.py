@@ -95,16 +95,11 @@ def index():
     try:
         ganalytics_id = ''
         if os.path.isfile(config_file):
-            print("DEBUG1")
             settings = {'firstSetup': False}
-            print("DEBUG2")
             config = ConfigParser.ConfigParser()
-            print("DEBUG3")
             config.readfp(open(config_file))
-            print("DEBUG4")
             if 'ganalytics' in config.sections():
                 ganalytics_id = config.get('ganalytics', 'ua_id')
-            print("DEBUG5")
         else:
             settings = {'firstSetup': True}
             # Bypass authentication during first setup

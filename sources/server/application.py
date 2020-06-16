@@ -309,6 +309,8 @@ def sanitize_user_input(word):
 
 def obfuscate(text, decode=False):
     try:
+        if type(text) != bytes:
+            text = text.encode(encoding='UTF-8')
         if decode:
             return base64.b64decode(codecs.decode(text, 'rot-13'))
         else:

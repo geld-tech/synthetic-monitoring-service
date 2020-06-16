@@ -2,11 +2,10 @@ from __future__ import absolute_import, unicode_literals
 
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.abspath(__file__))+'/../../sources/server')
 import unittest
 import mock
 
-from application import evaluate_data
+from ...sources.server.application import evaluate_data
 
 class TestSyntheticMonitoringApplication(unittest.TestCase):
     """TestSyntheticMonitoringApplication Unit Tests"""

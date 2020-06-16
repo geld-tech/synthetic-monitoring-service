@@ -90,6 +90,7 @@ test:
 	@python -c  "import os; print(os.urandom(24));" > `pwd`/sources/server/config/secret.uti
 	python -m unittest discover -s tests/unit_test
 	@rm -f `pwd`/sources/server/config/secret.uti
+	@rm -f `pwd`/sources/server/data/metrics.sqlite3
 
 ## Run UI Tests (CLI overridable parameters: PROTO, HOST, PORT, WAIT)
 test-ui:

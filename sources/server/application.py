@@ -204,7 +204,10 @@ def logout():
         session.clear()
         return jsonify({"data": {"response": "Logged out successfully!"}}), 200
     except Exception as e:
-        logger.error('Error while logging out: %s' % e)
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        del exc_type
+        del exc_obj
+        logger.error('Error while logging out (line %d): %s' % (exc_tb.tb_lineno, e))
         return jsonify({'data': {}, 'error': 'Exception encountered while logging out..'}), 500
 
 

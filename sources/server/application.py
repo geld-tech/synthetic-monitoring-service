@@ -279,12 +279,14 @@ def store_ua_id(ua_id):
                 config.remove_section('ganalytics')
         config.add_section('ganalytics')
         config.set('ganalytics', 'ua_id', ua_id)
-
         with open(config_file, 'w') as outfile:
             config.write(outfile)
-
         return True
-    except Exception:
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        del exc_type
+        del exc_obj
+        logger.error('Error while storing UA ID (line %d): %s' % (exc_tb.tb_lineno, e))
         return False
 
 

@@ -43,13 +43,13 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
         decoded_text1 = b'SecretText1234!$&%'
         evaluated_text = obfuscate(decoded_text1)
         print("evaluated_text %s %s" % (evaluated_text, type(evaluated_text)))
-        self.assertIsInstance(evaluated_text, bytes)
+        self.assertIsInstance(evaluated_text, str)
         self.assertEqual(evaluated_text, 'RnJwZXJnR3JrZzEyMzQhJCYl')
         # Test with a String input
         decoded_text2 = 'SecretText1234!$&%'
         evaluated_text = obfuscate(decoded_text2)
         print("evaluated_text %s %s" % (evaluated_text, type(evaluated_text)))
-        self.assertIsInstance(evaluated_text, bytes)
+        self.assertIsInstance(evaluated_text, str)
         self.assertEqual(evaluated_text, 'RnJwZXJnR3JrZzEyMzQhJCYl')
 
     def test_deobfuscate(self):

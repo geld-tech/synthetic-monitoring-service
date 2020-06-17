@@ -274,7 +274,7 @@ def store_ua_id(ua_id):
     try:
         config = ConfigParser.ConfigParser()
         if os.path.isfile(config_file):
-            config.readfp(open(config_file))
+            config.read_file(open(config_file))
             if 'ganalytics' in config.sections():
                 config.remove_section('ganalytics')
         config.add_section('ganalytics')

@@ -59,13 +59,13 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
         evaluated_text = obfuscate(encoded_text1, decode=True)
         print("evaluated_text %s %s" % (evaluated_text, type(evaluated_text)))
         self.assertIsInstance(evaluated_text, bytes)
-        self.assertEqual(evaluated_text, b'SecretText1234!$&%')
+        self.assertEqual(evaluated_text, 'SecretText1234!$&%')
         # Test with a String input
-        encoded_text2 = b'RnJwZXJnR3JrZzEyMzQhJCYl'
+        encoded_text2 = 'RnJwZXJnR3JrZzEyMzQhJCYl'
         evaluated_text = obfuscate(encoded_text2, decode=True)
         print("evaluated_text %s %s" % (evaluated_text, type(evaluated_text)))
         self.assertIsInstance(evaluated_text, bytes)
-        self.assertEqual(evaluated_text, b'SecretText1234!$&%')
+        self.assertEqual(evaluated_text, 'SecretText1234!$&%')
 
 if __name__ == '__main__':
     unittest.main()

@@ -97,7 +97,7 @@ def index():
         if os.path.isfile(config_file):
             settings = {'firstSetup': False}
             config = ConfigParser.ConfigParser()
-            config.readfp(open(config_file))
+            config.read_file(open(config_file))
             if 'ganalytics' in config.sections():
                 ganalytics_id = config.get('ganalytics', 'ua_id')
         else:

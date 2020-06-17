@@ -55,17 +55,17 @@ class TestSyntheticMonitoringApplication(unittest.TestCase):
     def test_deobfuscate(self):
         """application.obfuscate(decode=True)"""
         # Test with a Bytes input like
-        decoded_text1 = b'SecretText1234!$&%'
-        evaluated_text = obfuscate(decoded_text1)
+        encoded_text1 = b'RnJwZXJnR3JrZzEyMzQhJCYl'
+        evaluated_text = obfuscate(encoded_text1, decode=True)
         print("evaluated_text %s %s" % (evaluated_text, type(evaluated_text)))
         self.assertIsInstance(evaluated_text, bytes)
-        self.assertEqual(evaluated_text, b'RnJwZXJnR3JrZzEyMzQhJCYl')
+        self.assertEqual(evaluated_text, b'SecretText1234!$&%')
         # Test with a String input
-        decoded_text2 = 'SecretText1234!$&%'
-        evaluated_text = obfuscate(decoded_text2)
+        encoded_text2 = b'RnJwZXJnR3JrZzEyMzQhJCYl'
+        evaluated_text = obfuscate(encoded_text2, decode=True)
         print("evaluated_text %s %s" % (evaluated_text, type(evaluated_text)))
         self.assertIsInstance(evaluated_text, bytes)
-        self.assertEqual(evaluated_text, b'RnJwZXJnR3JrZzEyMzQhJCYl')
+        self.assertEqual(evaluated_text, b'SecretText1234!$&%')
 
 if __name__ == '__main__':
     unittest.main()

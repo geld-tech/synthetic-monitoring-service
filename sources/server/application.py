@@ -179,7 +179,7 @@ def login():
         data = evaluate_data(request.data)
         if 'password' in data and os.path.isfile(config_file):
             config = ConfigParser.ConfigParser()
-            config.readfp(open(config_file))
+            config.read_file(open(config_file))
             if 'admin' in config.sections():
                 current_password = config.get('admin', 'password')
                 password = sanitize_user_input(data['password'])

@@ -216,7 +216,7 @@ def store_password(password):
     try:
         config = ConfigParser.ConfigParser()
         if os.path.isfile(config_file):
-            config.readfp(open(config_file))
+            config.read_file(open(config_file))
             if 'admin' in config.sections():
                 config.remove_section('admin')
         config.add_section('admin')

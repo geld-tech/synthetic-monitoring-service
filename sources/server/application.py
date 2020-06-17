@@ -79,7 +79,7 @@ Session = scoped_session(session_factory)
 
 
 def authenticated(func):
-    """Checks whether user is logged in or raises error 401."""
+    '''Checks whether user is logged in or raises error 401'''
     @wraps(func)
     def wrapper(*args, **kwargs):
         if session.get('admin_user', False):
@@ -156,7 +156,7 @@ def set_password():
 
 
 def evaluate_data(data):
-    ''' Safely evaluates data '''
+    '''Safely evaluates data'''
     if type(data) == bytes:
         data = data.decode("UTF-8")
     return ast.literal_eval(data)

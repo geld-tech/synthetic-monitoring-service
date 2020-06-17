@@ -257,7 +257,7 @@ def get_ua_id():
     try:
         if os.path.isfile(config_file):
             config = ConfigParser.ConfigParser()
-            config.readfp(open(config_file))
+            config.read_file(open(config_file))
             if 'ganalytics' in config.sections():
                 ua_id = config.get('ganalytics', 'ua_id')
     except Exception as e:

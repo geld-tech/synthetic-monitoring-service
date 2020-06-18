@@ -2,7 +2,7 @@
   <div class="index">
     <!-- Container -->
     <b-container class="bv-example-row">
-        <h2 id="header">Synthetic Monitoring Service</h2>
+        <h2 id="indexHeader">Synthetic Monitoring Service</h2>
         <div v-if="loading" class="loading">
             <h6>Loading...</h6>
             <img src="/static/images/spinner.gif" width="32" height="32"/>

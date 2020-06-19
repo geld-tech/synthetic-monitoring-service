@@ -6,6 +6,8 @@
     Polls service metrics on availability and latency
 
 """
+from __future__ import absolute_import, unicode_literals
+
 import logging
 import logging.handlers
 import socket

@@ -12,10 +12,12 @@ import logging
 import logging.handlers
 import socket
 import time
+
 try:                 # for Python 3
     from urllib.request import urlopen, Request
 except ImportError:  # for Python 2
     from urllib2 import urlopen, Request
+
 
 class ServiceStatus:
     def __init__(self, url="https://www.geld.tech/"):

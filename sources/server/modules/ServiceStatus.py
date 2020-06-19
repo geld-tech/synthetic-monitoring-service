@@ -12,9 +12,10 @@ import logging
 import logging.handlers
 import socket
 import time
-import urllib
-import urllib2
-
+try:                 # for Python 3
+    from urllib.request import urlopen, Request
+except ImportError:  # for Python 2
+    from urllib2 import urlopen, Request
 
 class ServiceStatus:
     def __init__(self, url="https://www.geld.tech/"):
@@ -37,8 +38,8 @@ class ServiceStatus:
 
     def is_reachable(self, url, timeout=5):
         try:
-            req = urllib2.Request(url)
-            response = urllib2.urlopen(req, timeout=timeout)
+            req = Request(url)
+            response = urlopen(req, timeout=timeout)
             response.close()
             return True
         except Exception as e:
@@ -47,7 +48,7 @@ class ServiceStatus:
 
     def measure_latency(self, url):
         try:
-            req = urllib.urlopen(url)
+            req = urlopen(url)
             start = time.time()
             page = req.read()
             end = time.time()

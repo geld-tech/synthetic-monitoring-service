@@ -49,6 +49,8 @@ clean: stop clean-pyc
 clean-all: clean
 	$(call echo_title, "CACHE FILES CLEANUP")
 	-rm -rf $(LOCAL_CACHE)
+	-rm -f `pwd`/sources/server/config/secret.uti
+	-rm -f `pwd`/sources/server/data/metrics.sqlite3
 
 ## Remove python artifacts
 clean-pyc:

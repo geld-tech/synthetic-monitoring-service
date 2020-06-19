@@ -86,7 +86,7 @@ class ServiceStatus:
         try:
             hostname = socket.gethostname()
             return hostname
-        except Exception, e:
+        except Exception as e:
             self.logger.error('Error reading hostname: %s' % e)
             return False
 

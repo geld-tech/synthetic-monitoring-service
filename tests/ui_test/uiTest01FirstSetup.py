@@ -7,6 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, sys, re
 
+
 class FirstSetup(unittest.TestCase):
     proto = "http"
     host = "0.0.0.0"
@@ -67,6 +68,7 @@ class FirstSetup(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
+
 
 if __name__ == "__main__":
     from optparse import OptionParser

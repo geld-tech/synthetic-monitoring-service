@@ -39,7 +39,7 @@ class ServiceStatus:
             response = urllib2.urlopen(req, timeout=timeout)
             response.close()
             return True
-        except Exception, e:
+        except Exception as e:
             self.logger.debug('Error reaching service (%s): %s' % (url, e))
             return False
 

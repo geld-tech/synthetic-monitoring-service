@@ -66,7 +66,7 @@ class ServiceStatus:
                     data['latency'] = latency
                     data['reachable'] = True
             return data
-        except Exception, e:
+        except Exception as e:
             self.logger.error('Error retrieving service metrics (%s): %s' % (url, e))
             return {}
 

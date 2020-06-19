@@ -12,6 +12,7 @@ class FirstSetup(unittest.TestCase):
     host = "0.0.0.0"
     port = 5000
     delay = 30
+
     def setUp(self):
         self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(30)

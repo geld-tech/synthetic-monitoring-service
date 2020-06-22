@@ -30,7 +30,6 @@ class ConfigSection(unittest.TestCase):
         driver.find_element_by_id("adminPassword").clear()
         driver.find_element_by_id("adminPassword").send_keys("password123")
         driver.find_element_by_id("adminSubmitButton").click()
-        driver.find_element_by_id("services-tab___BV_tab_button__").click()
         driver.find_element_by_id("analytics-tab___BV_tab_button__").click()
         driver.find_element_by_id("admin-password-tab___BV_tab_button__").click()
         driver.find_element_by_id("adminLogoutButton").click()

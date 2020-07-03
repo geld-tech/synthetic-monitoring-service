@@ -74,3 +74,25 @@ apt update
 apt install pictures-annotation-service
 ```
 
+### CentOS/Red Hat
+
+* Install the repository by creating the file /etc/yum.repos.d/zlig.repo:
+```
+echo "[geld.tech]
+name=geld.tech
+baseurl=http://dl.bintray.com/geldtech/rpm
+gpgcheck=0
+repo_gpgcheck=0
+enabled=1" |  tee -a /etc/yum.repos.d/geld.tech.repo
+```
+
+* Install EPEL repository for external dependencies
+```
+yum install epel-release
+```
+
+* Install the package
+```
+yum install pictures-annotation-service
+```
+

@@ -115,3 +115,30 @@ chmod a+x /usr/bin/systemctl
 test -L /bin/systemctl || ln -sf /usr/bin/systemctl /bin/systemctl
 ```
 
+
+## Usage
+
+* Adds Google Analytics User Agent ID (optional)
+  * Create configuration if doesn't exist
+```
+cp  /opt/geld/webapps/pictures-annotation-service/config/settings.cfg.template /opt/geld/webapps/pictures-annotation-service/config/settings.cfg
+```
+
+  * Edit configuration file
+```
+vim /opt/geld/webapps/pictures-annotation-service/config/settings.cfg
+```
+
+  * Replace <GA_UA_ID> with own value
+```
+[ganalytics]
+ua_id=<GA_UA_ID>
+```
+
+* Reload systemd services configuration and start pictures-annotation-service service
+```
+systemctl daemon-reload
+systemctl start pictures-annotation-service
+systemctl status pictures-annotation-service
+```
+

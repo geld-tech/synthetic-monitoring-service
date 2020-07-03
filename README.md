@@ -96,3 +96,22 @@ yum install epel-release
 yum install pictures-annotation-service
 ```
 
+### Docker
+
+Installation on Docker is similar to the base image, CentOS or Ubuntu, but with the following differences pre-requisites.
+
+* Install Python and wget (if not installed yet)
+  * CentOS-based image: `yum install -y python wget`
+  * Ubuntu-based image: `apt update && apt install -y python wget`
+* Download Docker systemctl replacement
+```
+wget https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py
+```
+* Replace systemctl (which doesn't work on Docker as PIDs aren't starting at 1):
+```
+cp /usr/bin/systemctl /usr/bin/systemctl.bak
+yes | cp -f systemctl.py /usr/bin/systemctl
+chmod a+x /usr/bin/systemctl
+test -L /bin/systemctl || ln -sf /usr/bin/systemctl /bin/systemctl
+```
+

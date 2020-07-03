@@ -42,3 +42,8 @@
 
 Synthetic monitoring service recording availability and latency of services based on Python Flask, Vue.js, and Chart.js.
 
+
+## Demo
+
+A sample demo of the project is hosted on <a href="http://geld.tech">geld.tech</a>.
+

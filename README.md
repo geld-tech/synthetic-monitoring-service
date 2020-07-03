@@ -142,3 +142,20 @@ systemctl start pictures-annotation-service
 systemctl status pictures-annotation-service
 ```
 
+
+## Development
+
+Use the Makefile targets from the provided Makefile to build and run locally the Flask server with API, a stub Nginx status, and the Vue web application with DevTools enabled for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/) and [Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd):
+
+```
+# Build application
+make all
+
+# Run application locally
+make start
+```
+
+Then, access the application locally using a browser at the address: [http://0.0.0.0:5000/](http://0.0.0.0:5000/).
+
+Type `make stop` at any stage to stop the local development application.
+

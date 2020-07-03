@@ -52,3 +52,25 @@ A sample demo of the project is hosted on <a href="http://geld.tech">geld.tech</
 
 ![Architecture](resources/Architecture.png)
 
+
+## Install
+
+### Ubuntu/Debian
+
+* Install the repository information and associated GPG key (to ensure authenticity):
+```
+echo "deb http://dl.bintray.com/geldtech/debian /" |  tee -a /etc/apt/sources.list.d/geld-tech.list
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com EA3E6BAEB37CF5E4
+```
+
+* Update repository list of available packages and clean already installed versions
+```
+apt clean all
+apt update
+```
+
+* Install package
+```
+apt install pictures-annotation-service
+```
+

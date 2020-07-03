@@ -47,3 +47,8 @@ Synthetic monitoring service recording availability and latency of services base
 
 A sample demo of the project is hosted on <a href="http://geld.tech">geld.tech</a>.
 
+
+## Architecture
+
+![Architecture](resources/Architecture.png)
+

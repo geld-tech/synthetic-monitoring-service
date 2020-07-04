@@ -332,6 +332,20 @@ db-stop:
 		docker rm -f `docker ps -a -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'`; \
 	fi
 
+## Start background TS Database
+tsdb-start:
+	$(call echo_title, "START TIME SERIES DATABASE")
+	@echo ""
+	@if [ -f "$(LOCAL_DEV_ENV)/prometheus.pid" ]; then \
+		echo "Message queue running"; \
+		docker ps -af "name=prometheusdb"; \
+	else \
+		docker run -d --hostname prometheusdb --name prometheusdb -p 9090:9090 -v --volume prometheus:/prometheus prom/prometheus:v2.19.2; \
+		sleep 3; \
+		mkdir -p $(LOCAL_DEV_ENV); \
+		docker ps -qf "name=prometheusdb" > $(LOCAL_DEV_ENV)/prometheusdb.pid; \
+	fi
+
 ## Validate latest .deb package on a local Ubuntu image with Docker
 docker-run-deb:
 	$(call echo_title, "DOCKER RUN DEB")

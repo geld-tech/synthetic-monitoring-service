@@ -353,10 +353,6 @@ tsdb-status:
 		docker ps -af "name=prometheusdb"; \
 		echo ""; \
 		docker exec -it `docker ps -f "name=prometheusdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxd"; \
-		echo ""; \
-		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influx -version"; \
-		echo ""; \
-		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influx -execute 'SHOW DATABASES'"; \
 	else \
 		echo "No InfluxDB running running.."; \
 	fi

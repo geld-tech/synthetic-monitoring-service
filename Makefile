@@ -346,6 +346,21 @@ tsdb-start:
 		docker ps -qf "name=prometheusdb" > $(LOCAL_DEV_ENV)/prometheusdb.pid; \
 	fi
 
+## Check TS Database
+tsdb-status:
+	$(call echo_title, "STATUS TIME SERIES DATABASE")
+	@if [ -f "$(LOCAL_DEV_ENV)/prometheusdb.pid" ]; then \
+		docker ps -af "name=prometheusdb"; \
+		echo ""; \
+		docker exec -it `docker ps -f "name=prometheusdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influxd"; \
+		echo ""; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influx -version"; \
+		echo ""; \
+		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influx -execute 'SHOW DATABASES'"; \
+	else \
+		echo "No InfluxDB running running.."; \
+	fi
+
 ## Validate latest .deb package on a local Ubuntu image with Docker
 docker-run-deb:
 	$(call echo_title, "DOCKER RUN DEB")

@@ -352,7 +352,7 @@ tsdb-status:
 	@if [ -f "$(LOCAL_DEV_ENV)/prometheusdb.pid" ]; then \
 		docker ps -af "name=prometheusdb"; \
 		echo ""; \
-		docker exec -it `docker ps -f "name=prometheusdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/sh -c "promtoll --version"; \
+		docker exec -it `docker ps -f "name=prometheusdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/sh -c "promtool --version"; \
 	else \
 		echo "No InfluxDB running running.."; \
 	fi

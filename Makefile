@@ -357,6 +357,16 @@ tsdb-status:
 		echo "No InfluxDB running running.."; \
 	fi
 
+## Stop TS Database
+tsdb-stop:
+	$(call echo_title, "STOP TIME SERIES DATABASE")
+	@if [ -f "$(LOCAL_DEV_ENV)/prometheusdb.pid" ]; then \
+		docker rm -f `cat $(LOCAL_DEV_ENV)/prometheusdb.pid`; \
+		rm -f $(LOCAL_DEV_ENV)/prometheusdb.pid; \
+	elif [ -n "`docker ps -a -f 'name=prometheusdb'|grep -iv 'CONTAINER ID'|awk -e '{print $$1}'`" ]; then \
+		docker rm -f `docker ps -a -f "name=prometheusdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'`; \
+	fi
+
 ## Validate latest .deb package on a local Ubuntu image with Docker
 docker-run-deb:
 	$(call echo_title, "DOCKER RUN DEB")

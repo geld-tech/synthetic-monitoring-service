@@ -340,7 +340,7 @@ tsdb-start:
 		echo "Message queue running"; \
 		docker ps -af "name=prometheusdb"; \
 	else \
-		docker run -d --hostname prometheusdb --name prometheusdb -p 9090:9090 -v --volume prometheus:/prometheus prom/prometheus:v2.19.2; \
+		docker run -d --hostname prometheusdb --name prometheusdb -p 9090:9090 -v prometheus:/prometheus prom/prometheus:v2.19.2; \
 		sleep 3; \
 		mkdir -p $(LOCAL_DEV_ENV); \
 		docker ps -qf "name=prometheusdb" > $(LOCAL_DEV_ENV)/prometheusdb.pid; \

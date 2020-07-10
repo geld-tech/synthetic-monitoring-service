@@ -354,7 +354,7 @@ tsdb-status:
 		echo ""; \
 		docker exec -it `docker ps -f "name=prometheusdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/sh -c "promtool --version"; \
 	else \
-		echo "No InfluxDB running running.."; \
+		echo "No Prometheus running.."; \
 	fi
 
 ## Stop TS Database

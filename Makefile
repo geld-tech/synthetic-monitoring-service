@@ -319,7 +319,7 @@ db-status:
 		echo ""; \
 		docker exec -it `docker ps -f "name=influxdb"|grep -iv "CONTAINER ID"|awk -e '{print $$1}'` /bin/bash -c "influx -execute 'SHOW DATABASES'"; \
 	else \
-		echo "No InfluxDB running running.."; \
+		echo "No InfluxDB running.."; \
 	fi
 
 ## Stop Database

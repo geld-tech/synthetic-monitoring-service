@@ -36,6 +36,9 @@ start: all mq-start worker-start webapp-start
 ## Stop local development environment
 stop: worker-stop webapp-stop mq-stop
 
+## Stop all local development environment
+stop-all: worker-stop webapp-stop mq-stop db-stop tsdb-stop
+
 ## Run all targets locally
 all: check-prereq stop save-cache clean isort lint test local-dev-env vue-dev-tools npm-install npm-lint npm-audit npm-build webapp-setup webapp-settings
 	@echo "Build completed successfully!"
@@ -412,7 +415,7 @@ docker-run-rpm:
 .PHONY: webapp-setup webapp-settings webapp-config
 .PHONY: daemon-start daemon-stop webapp-start webapp-stop
 .PHONY: mq-start mq-stop mq-status
-.PHONY: start stop
+.PHONY: start stop 
 
 
 # Functions

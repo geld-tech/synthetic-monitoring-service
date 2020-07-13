@@ -415,7 +415,7 @@ docker-run-rpm:
 .PHONY: webapp-setup webapp-settings webapp-config
 .PHONY: daemon-start daemon-stop webapp-start webapp-stop
 .PHONY: mq-start mq-stop mq-status
-.PHONY: start stop 
+.PHONY: start stop stop-all
 
 
 # Functions

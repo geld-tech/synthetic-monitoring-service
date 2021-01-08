@@ -8,51 +8,7 @@
             <img src="/static/images/spinner.gif" width="32" height="32"/>
         </div>
         <div v-else>
-            <b-row align-v="start" align-h="around">
-                <b-col sm="12">
-                    <div>
-                        <b-form-file multiple accept="image/*"
-                                ref="files-input"
-                                v-model="files" v-bind:state="Boolean(files)"
-                                placeholder="Choose files..." drop-placeholder="Drop files here..." browse-text="Browse">
-                           <template slot="file-name" slot-scope="{ names }">
-                             <b-badge variant="dark">{{ names[0] }}</b-badge>
-                             <b-badge v-if="names.length > 1" variant="dark" class="ml-1">+ {{ names.length - 1 }} More files</b-badge>
-                           </template>
-                        </b-form-file>
-                    </div>
-                </b-col>
-            </b-row>
-            <b-row class="my-1">
-              <b-col sm="12">
-                <div class="float-right">
-                  <b-button @click="onReset" class="mr-2">Clear</b-button>
-                  <b-button @click="onSubmit">Send</b-button>
-                </div>
-              </b-col>
-            </b-row>
-            <b-row align-v="start" align-h="around">
-                <b-col sm="12">
-                    <div v-if="$store.state.task.status != 'UNDEFINED'">
-                        <p><strong>Task</strong> {{ taskId }} ({{ $store.state.task.status }})</p>
-                        <p v-if="taskId">
-                            <strong>Results</strong>
-                            <ul v-if="$store.state.task.status == 'COMPLETE'">
-                              <li v-for="(result, index) in $store.state.task.results" v-bind:key="index">
-                                <b-img rounded fluid center thumbnail class="image"
-                                    v-bind:src="'results/' + result.task_id + '/' + result.filename"
-                                    v-bind:alt="result.filename"></b-img>
-                                <p>{{ result.identification }}</p>
-                              </li>
-                            </ul>
-                            <span class="error" v-else-if="$store.state.task.status == 'FAILED'">Identification failed..</span>
-                        </p>
-                    </div>
-                    <div v-else>
-                        <br />
-                    </div>
-                </b-col>
-            </b-row>
+            <p>Graph</p>
         </div>
     </b-container>
   </div>

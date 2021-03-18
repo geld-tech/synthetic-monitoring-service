@@ -41,6 +41,9 @@ env:
   - BINTRAY_DESCRIPTOR_DEB=bintray-descriptor-debian.json.in
   - BINTRAY_DESCRIPTOR_RPM=bintray-descriptor-rpm.json.in
   - TARGET_ARCH=noarch
+  # JFROG
+  - JFROG_URL=https://*****.jfrog.io/artifactory
+  - JFROG_CLI_OFFER_CONFIG=false
 
 before_install:
   # Export variables containing versions and filename

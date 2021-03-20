@@ -83,6 +83,10 @@ before_install:
   - find . -type f | xargs sed -i "s.__PACKAGE_DIR__.$PACKAGE_DIR.g"
 
 install:
+  # Output versions
+  - python --version
+  - flake8 --version
+  - jfrog --version
   # NPM packages
   - npm update -g npm
   # Build Vue web application
@@ -92,10 +96,6 @@ install:
   - npm audit
   - npm run build
   - cd ../..
-  # Output versions
-  - python --version
-  - flake8 --version
-  - jfrog --version
 
 before_script:
   #  Flask application

@@ -92,6 +92,10 @@ install:
   - npm audit
   - npm run build
   - cd ../..
+  # Output versions
+  - python --version
+  - flake8 --version
+  - jfrog --version
 
 before_script:
   #  Flask application

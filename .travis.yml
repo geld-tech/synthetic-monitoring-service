@@ -35,7 +35,7 @@ addons:
 
 language: node_js
 node_js:
-  - "8"
+  - "10"
 
 cache:
   bundler: true
@@ -178,9 +178,6 @@ before_deploy:
   - sed -i "s/__SUBJECT__/$BINTRAY_SUBJECT/g" $BINTRAY_DESCRIPTOR_RPM
   - sed -i "s/__LICENSE__/$BINTRAY_LICENSE/g" $BINTRAY_DESCRIPTOR_RPM
   - sed -i "s/__VERSION__/$BUILD_VERSION/g" $BINTRAY_DESCRIPTOR_RPM
-  # Install JFrog CLI
-  - curl -fL https://getcli.jfrog.io | sh
-  - sudo mv -v jfrog /usr/local/bin/
 
 deploy:
   # Upload Debian packages to Bintray

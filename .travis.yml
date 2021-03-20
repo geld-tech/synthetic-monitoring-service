@@ -29,7 +29,7 @@ addons:
   apt:
     packages:
     - fakeroot
-    - python-flake8
+    - flake8
     - rpm
     - yum-utils
 

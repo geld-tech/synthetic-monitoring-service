@@ -42,7 +42,7 @@ env:
   - BINTRAY_DESCRIPTOR_RPM=bintray-descriptor-rpm.json.in
   - TARGET_ARCH=noarch
   # JFROG
-  - JFROG_URL=https://*****.jfrog.io/artifactory
+  - JFROG_URL="https://"$JFROG_API_KEY".jfrog.io/artifactory"
   - JFROG_CLI_OFFER_CONFIG=false
 
 before_install:
@@ -176,7 +176,7 @@ deploy:
     skip_cleanup: true
   - provider: script
     skip_cleanup: true
-    script: jfrog rt u --url $ARTIFACTORY_URL --apikey $ARTIFACTORY_TOKEN --build-name $TRAVIS_REPO_SLUG --build-number $TRAVIS_JOB_ID $CHARTS_REPO/
+    script: jfrog rt u --url $JFROG_URL --apikey $JFROG_API_KEY --build-name $TRAVIS_REPO_SLUG --build-number $TRAVIS_JOB_ID $JFROG_API_ORG/
 
   # Upload RPM packages to jfrog.io
   ## METHOD 1: curl

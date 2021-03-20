@@ -92,14 +92,16 @@ install:
   - npm audit
   - npm run build
   - cd ../..
-  # Flask application
+
+before_script:
+  #  Flask application
   - cd sources/server/
   # Enforce syntax errors, undefined names, and other other potential issues with coding style
   - flake8 . --show-source --max-line-length=239 --max-complexity=10 --statistics --count
   - cd ../..
   # Unit tests
+  # -
 
-before_script:
   #  DEBIAN
   ## Create the package directories structure
   - mkdir $PACKAGE_VERSION
@@ -116,6 +118,7 @@ before_script:
   - rsync -a -r packages/DEBIAN/ $PACKAGE_VERSION/DEBIAN/
   ## Output files and directories for debugging purpose
   - ls -lsthRA $PACKAGE_VERSION/
+
   #  RPM
   ## Create the package directories structure
   - mkdir -p ./$PACKAGE_NAME/{BUILD,RPMS,SOURCES,SPECS,SRPMS}

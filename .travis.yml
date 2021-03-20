@@ -96,6 +96,9 @@ install:
   - npm audit
   - npm run build
   - cd ../..
+  # Install JFrog CLI
+  - curl -fL https://getcli.jfrog.io | sh
+  - sudo mv -v jfrog /usr/local/bin/
 
 before_script:
   #  Flask application

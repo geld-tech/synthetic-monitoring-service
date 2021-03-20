@@ -9,7 +9,7 @@
 ##############################################################################################
 os: linux
 dist: trusty
-sudo: false
+sudo: true
 
 addons:
   apt:
@@ -157,6 +157,9 @@ before_deploy:
   - sed -i "s/__SUBJECT__/$BINTRAY_SUBJECT/g" $BINTRAY_DESCRIPTOR_RPM
   - sed -i "s/__LICENSE__/$BINTRAY_LICENSE/g" $BINTRAY_DESCRIPTOR_RPM
   - sed -i "s/__VERSION__/$BUILD_VERSION/g" $BINTRAY_DESCRIPTOR_RPM
+  # Install JFrog CLI
+  - curl -fL https://getcli.jfrog.io | sh
+  - sudo mv -v jfrog /usr/local/bin/
 
 deploy:
   # Upload Debian packages to Bintray
@@ -171,6 +174,10 @@ deploy:
     user: $BINTRAY_USER
     key: $BINTRAY_API_KEY
     skip_cleanup: true
+  - provider: script
+    skip_cleanup: true
+    script: jfrog rt u --url $ARTIFACTORY_URL --apikey $ARTIFACTORY_TOKEN --build-name $TRAVIS_REPO_SLUG --build-number $TRAVIS_JOB_ID $CHARTS_REPO/
+
   # Upload RPM packages to jfrog.io
   ## METHOD 1: curl
   # curl -H "X-JFrog-Art-Api:<API_KEY>" -XPUT "https://****.jfrog.io/artifactory/****-deb-repo-local/pool/<DEBIAN_PACKAGE_NAME>;deb.distribution=<DISTRIBUTION>;deb.component=<COMPONENT>;deb.architecture=<ARCHITECTURE>" -T <PATH_TO_FILE

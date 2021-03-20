@@ -89,19 +89,20 @@ install:
   - jfrog --version
   # NPM packages
   - npm update -g npm
-  # Build Vue web application
+  # Install JFrog CLI
+  - curl -fL https://getcli.jfrog.io | sh
+  - sudo mv -v jfrog /usr/local/bin/
+
+before_script:
+  # Vue application
   - cd sources/webapp/
   - npm install
   - npm run lint
   - npm audit
   - npm run build
   - cd ../..
-  # Install JFrog CLI
-  - curl -fL https://getcli.jfrog.io | sh
-  - sudo mv -v jfrog /usr/local/bin/
 
-before_script:
-  #  Flask application
+  # Flask application
   - cd sources/server/
   # Enforce syntax errors, undefined names, and other other potential issues with coding style
   - flake8 . --show-source --max-line-length=239 --max-complexity=10 --statistics --count
@@ -109,7 +110,7 @@ before_script:
   # Unit tests
   # -
 
-  #  DEBIAN
+  # DEBIAN
   ## Create the package directories structure
   - mkdir $PACKAGE_VERSION
   - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/templates/
@@ -126,7 +127,7 @@ before_script:
   ## Output files and directories for debugging purpose
   - ls -lsthRA $PACKAGE_VERSION/
 
-  #  RPM
+  # RPM
   ## Create the package directories structure
   - mkdir -p ./$PACKAGE_NAME/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
   - mkdir -p $PACKAGE_NAME/BUILD/$PACKAGE_DIR/templates/

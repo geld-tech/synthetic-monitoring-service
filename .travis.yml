@@ -83,15 +83,15 @@ before_install:
   - find . -type f | xargs sed -i "s.__PACKAGE_DIR__.$PACKAGE_DIR.g"
 
 install:
-  # Output versions
-  - python --version
-  - flake8 --version
-  - jfrog --version
   # NPM packages
   - npm update -g npm
   # Install JFrog CLI
   - curl -fL https://getcli.jfrog.io | sh
   - sudo mv -v jfrog /usr/local/bin/
+  # Output versions
+  - python --version
+  - flake8 --version
+  - jfrog --version
 
 before_script:
   # Vue application

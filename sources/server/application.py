@@ -377,9 +377,9 @@ def tasks():
             db_session = Session()  # Create thread-local session
             for picture in db_session.query(Picture).filter(Picture.task_id == task_id):
                 pictures.append({"task_id": picture.task_id,
-                                "filename": picture.filename,
-                                "status": picture.status,
-                                "identification": picture.identification})
+                                 "filename": picture.filename,
+                                 "status": picture.status,
+                                 "identification": picture.identification})
             Session.remove()        # Remove thread-local session
         if any([('PENDING' == result['status']) for result in pictures]):
             task_status = "PENDING"

@@ -327,16 +327,16 @@ def obfuscate(text, decode=False):
 def upload():
     if request.method == 'POST':
         logger.info("Celery Status: %s" % is_celery_working())
-        # Validations
-        if 'files' not in request.files:
-            return jsonify({"data": {}, "error": "No file part uploaded"}), 500
-        files = request.files.getlist('files')
-        for f in files:
-            if f.filename == '':
-                return jsonify({"data": {}, "error": "No selected files"}), 500
-        for f in files:
-            if not type_allowed(f.filename):
-                return jsonify({"data": {}, "error": "Filetype not allowed"}), 500
+        # # Validations  ## XXX NOT USED IN THIS APP
+        # if 'files' not in request.files:
+        #     return jsonify({"data": {}, "error": "No file part uploaded"}), 500
+        # files = request.files.getlist('files')
+        # for f in files:
+        #     if f.filename == '':
+        #         return jsonify({"data": {}, "error": "No selected files"}), 500
+        # for f in files:
+        #     if not type_allowed(f.filename):
+        #         return jsonify({"data": {}, "error": "Filetype not allowed"}), 500
         # Generates UUID
         task_id = uuid()
         # Create directory to store pictures

@@ -327,32 +327,7 @@ def obfuscate(text, decode=False):
 def upload():
     if request.method == 'POST':
         logger.info("Celery Status: %s" % is_celery_working())
-        # # Validations  ## XXX NOT USED IN THIS APP
-        # if 'files' not in request.files:
-        #     return jsonify({"data": {}, "error": "No file part uploaded"}), 500
-        # files = request.files.getlist('files')
-        # for f in files:
-        #     if f.filename == '':
-        #         return jsonify({"data": {}, "error": "No selected files"}), 500
-        # for f in files:
-        #     if not type_allowed(f.filename):
-        #         return jsonify({"data": {}, "error": "Filetype not allowed"}), 500
-        # Generates UUID
-        task_id = uuid()
-        # Create directory to store pictures
-        task_dir = os.path.join(app.config['UPLOAD_FOLDER'], task_id)
-        os.makedirs(task_dir)
-        # Save file
-        filenames = []
-        for f in files:
-            if f:
-                filename = secure_filename(f.filename)
-                f.save(os.path.join(task_dir, filename))
-                filenames.append(filename)
-        # Sending task to MQ
-        task = predict_metrics.apply_async(args=[filenames], queue="__PACKAGE_NAME__", task_id=task_id)
-        logger.info("Celery Queued Task ID: %s" % task.task_id)
-        return jsonify({"data": {"response": "Success!", "files": filenames}, "task_id": task.task_id}), 200
+        return jsonify({"data": {"response": "Success!"}}), 200
     else:
         return jsonify({"data": {}, "error": "Incorrect request method"}), 500
 

@@ -15,15 +15,13 @@ import sys
 from functools import wraps
 from optparse import OptionParser
 
-from celery import Celery, uuid
+from celery import Celery
 from flask import (Flask, jsonify, render_template, request,
                    send_from_directory, session)
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from werkzeug.utils import secure_filename
 
 from modules.Models import Base, Picture
-from worker import predict_metrics
 
 try:
     import configparser as ConfigParser  # for Python 3

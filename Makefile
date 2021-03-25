@@ -40,7 +40,7 @@ stop: worker-stop webapp-stop mq-stop
 stop-all: worker-stop webapp-stop mq-stop db-stop tsdb-stop clean-all
 
 ## Run all targets locally
-all: check-prereq stop save-cache clean isort lint test local-dev-env vue-dev-tools npm-install npm-lint npm-audit npm-build webapp-setup webapp-settings
+all: check-prereq show-versions stop save-cache clean isort lint test local-dev-env vue-dev-tools npm-install npm-lint npm-audit npm-build webapp-setup webapp-settings
 	@echo "Build completed successfully!"
 
 ## Remove all local build artifacts

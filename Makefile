@@ -81,6 +81,7 @@ check-prereq:
 
 ## Display installed versions of tools
 show-versions:
+	$(call echo_title, "INSTALLED VERSIONS")
 	python --version
 	flake8 --version
 	npm --version

@@ -92,13 +92,12 @@ install:
   - make show-versions
 
 before_script:
-  # Vue application
-  - cd sources/webapp/
-  - npm install
-  - npm run lint
-  - npm audit
-  - npm run build
-  - cd ../..
+  # Check and build Vue application
+  - make local-dev-env
+  - make npm-lint
+  - make npm-audit
+  - make npm-audit
+  - make npm-build
 
   # Flask application
   ## Enforce syntax errors, undefined names, and other other potential issues with coding style

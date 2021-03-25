@@ -89,9 +89,7 @@ install:
   - curl -fL https://getcli.jfrog.io | sh
   - sudo mv -v jfrog /usr/local/bin/
   # Output versions
-  - python --version
-  - flake8 --version
-  - jfrog --version
+  - make show-versions
 
 before_script:
   # Vue application

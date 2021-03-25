@@ -1,8 +1,8 @@
 # Globals
 LOCAL_DEV_ENV=local-dev-env
 LOCAL_CACHE=.cache
-SRV_DEV_ENV=local-dev-env/server
-NPM_DEV_ENV=local-dev-env/webapp
+SRV_DEV_ENV="$(LOCAL_DEV_ENV)"/server
+NPM_DEV_ENV="$(LOCAL_DEV_ENV)"/webapp
 
 # Package Details
 PACKAGE_NAME=localdev

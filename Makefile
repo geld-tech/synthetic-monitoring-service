@@ -79,6 +79,14 @@ check-prereq:
 	@if [ ! -f "/usr/bin/npm" ]    && [ ! -f "/usr/local/bin/npm" ]; then echo "Node.js NPM not found.. Install and try again"; exit 127; fi
 	@if [ ! -f "/usr/bin/celery" ] && [ ! -f "/usr/local/bin/celery" ]; then echo "Python Celery found.. Install and try again"; exit 127; fi
 
+## Display installed versions of tools
+show-versions:
+	python --version
+	flake8 --version
+	npm --version
+	node --version 
+	jfrog --version
+
 ## Sort Python import statements
 isort:
 	$(call echo_title, "PYTHON ISORT")

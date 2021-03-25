@@ -436,7 +436,7 @@ define echo_title
 endef
 
 
-# Self-documentated makefile (DO NOT EDIT PAST THIS LINE)
+# Self-documented makefile (DO NOT EDIT PAST THIS LINE)
 .DEFAULT_GOAL := show-help
 .PHONY: show-help
 show-help:

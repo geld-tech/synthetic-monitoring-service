@@ -1,0 +1,16 @@
+[Unit]
+Description=Worker Daemon associated with the service __PACKAGE_NAME__
+After=__PACKAGE_NAME__.service
+
+[Service]
+Type=forking
+User=root
+Group=celery
+WorkingDirectory=__PACKAGE_DIR__
+ExecStart=/usr/bin/celery multi start worker -A worker --pidfile=__PACKAGE_DIR__/worker.pid --logfile=/var/log/__PACKAGE_NAME__.log
+ExecStop=/usr/bin/celery multi stopwait worker --pidfile=__PACKAGE_DIR__/worker.pid
+
+[Install]
+WantedBy=__PACKAGE_NAME__.service
+
+

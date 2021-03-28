@@ -130,11 +130,11 @@ before_script:
   ## Layout the files in the directories structure
   - rsync -a --chown=root:www-data sources/files/ $PACKAGE_NAME/BUILD/
   - rsync -a --chown=root:www-data sources/server/ $PACKAGE_NAME/BUILD/$PACKAGE_DIR
-  #- rsync -a --chown=root:www-data sources/webapp/dist/*.html $PACKAGE_NAME/BUILD/$PACKAGE_DIR/templates/
-  #- rsync -a -r --chown=root:www-data sources/webapp/static/  $PACKAGE_NAME/BUILD/$PACKAGE_DIR/static/
-  #- rsync -a -r --chown=root:www-data sources/webapp/dist/css $PACKAGE_NAME/BUILD/$PACKAGE_DIR/static
-  #- rsync -a -r --chown=root:www-data sources/webapp/dist/js  $PACKAGE_NAME/BUILD/$PACKAGE_DIR/static
-  #- rsync -a --chown=root:www-data packages/RPM/* $PACKAGE_NAME/
+  - rsync -a --chown=root:www-data sources/webapp/dist/*.html $PACKAGE_NAME/BUILD/$PACKAGE_DIR/templates/
+  - rsync -a -r --chown=root:www-data sources/webapp/static/  $PACKAGE_NAME/BUILD/$PACKAGE_DIR/static/
+  - rsync -a -r --chown=root:www-data sources/webapp/dist/css $PACKAGE_NAME/BUILD/$PACKAGE_DIR/static
+  - rsync -a -r --chown=root:www-data sources/webapp/dist/js  $PACKAGE_NAME/BUILD/$PACKAGE_DIR/static
+  - rsync -a --chown=root:www-data packages/RPM/* $PACKAGE_NAME/
   ## Output files and directories for debugging purpose
   - ls -lsthRA $PACKAGE_NAME/
 

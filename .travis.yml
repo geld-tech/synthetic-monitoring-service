@@ -114,7 +114,7 @@ before_script:
   ## Layout the files in the directories structure
   - rsync -a sources/files/ $PACKAGE_VERSION/
   - rsync -a sources/server/ $PACKAGE_VERSION/$PACKAGE_DIR
-  - rsync -a sources/webapp/dist/*.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
+  #- rsync -a sources/webapp/dist/*.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
   #- rsync -a -r sources/webapp/static/  $PACKAGE_VERSION/$PACKAGE_DIR/static/
   #- rsync -a -r sources/webapp/dist/css $PACKAGE_VERSION/$PACKAGE_DIR/static
   #- rsync -a -r sources/webapp/dist/js  $PACKAGE_VERSION/$PACKAGE_DIR/static

@@ -16,12 +16,12 @@ from functools import wraps
 from optparse import OptionParser
 
 from celery import Celery
+
 from flask import (Flask, jsonify, render_template, request,
                    send_from_directory, session)
+from modules.Models import Base, Picture
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-
-from modules.Models import Base, Picture
 
 try:
     import configparser as ConfigParser  # for Python 3

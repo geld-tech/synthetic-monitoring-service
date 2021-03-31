@@ -8,13 +8,13 @@ import platform
 import socket
 import sys
 
+from celery import Celery, states
+
 import cv2
 import tensorflow as tf
-from celery import Celery, states
+from modules.Models import Base, Picture, Server
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
-from modules.Models import Base, Picture, Server
 
 try:
     import configparser as ConfigParser  # for Python 3

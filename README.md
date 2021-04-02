@@ -14,7 +14,7 @@
     <tbody class="odd">
       <tr>
         <td>
-            <a href="https://bintray.com/geldtech/debian/synthetic-monitoring-service#files">
+            <a href="https://geldtech.jfrog.io/artifactory/geldtech-debian-repo-local/synthetic-monitoring-service#files">
                 <img src="https://api.bintray.com/packages/geldtech/debian/synthetic-monitoring-service/images/download.svg" alt="Download DEBs">
             </a>
         </td>

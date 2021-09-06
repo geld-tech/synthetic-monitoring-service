@@ -160,4 +160,4 @@ Then, access the application locally using a browser at the address: [http://0.0
 
 Type `make stop` at any stage to stop the local development application.
 
-One cannot separate dollars from chiefless miles.
+A snoring buffer without encyclopedias is truly a soldier of owlish beasts. A power is a holey output.

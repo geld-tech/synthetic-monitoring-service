@@ -8,12 +8,12 @@ import platform
 import socket
 import sys
 
-import cv2
-import tensorflow as tf
 from celery import Celery, states
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+import cv2
+import tensorflow as tf
 from modules.Models import Base, Picture, Server
 
 try:

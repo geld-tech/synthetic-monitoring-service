@@ -17,7 +17,7 @@ env:
   VERSION: 0.3
   ARCH: noarch
   AUTHOR: geld.tech
-  DESCRIPTION: "Sample Debian package built with GitHub Actions"
+  DESCRIPTION: "Synthetic monitoring service recording availability and latency of services based on Python Flask, Vue.js, and Chart.js"
   REPO_NAME: debs
   DISTRIBUTION: ubuntu/bionic
 

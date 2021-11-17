@@ -12,11 +12,11 @@ name: build
 on: [pull_request, push]
 
 env:
-  PACKAGE_NAME: deb-builder-packagecloud
+  PACKAGE_NAME: synthetic-monitoring-service
   LICENSE: LGPL-2.1
-  VERSION: 0.2
+  VERSION: 0.3
   ARCH: noarch
-  AUTHOR: zlig
+  AUTHOR: geld.tech
   DESCRIPTION: "Sample Debian package built with GitHub Actions"
   REPO_NAME: debs
   DISTRIBUTION: ubuntu/bionic

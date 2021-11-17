@@ -1,0 +1,82 @@
+##############################################################################################
+#
+# GitHub Actions configuration file
+# 
+# Set the required secrets in the build settings of the project:
+#   - PACKAGECLOUD_USER
+#   - PACKAGECLOUD_KEY
+#
+##############################################################################################
+name: build
+
+on: [pull_request, push]
+
+env:
+  PACKAGE_NAME: rpm-builder-packagecloud
+  LICENSE: LGPL-2.1
+  VERSION: 0.3
+  ARCH: noarch
+  AUTHOR: geld.tech
+  DESCRIPTION: "Synthetic monitoring service recording availability and latency of services based on Python Flask, Vue.js, and Chart.js" 
+  REPO_NAME: rpms
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        distrib: [el/7, el/8, rpm_any/rpm_any]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install pre-requisites
+        run: sudo apt install -y rpm
+
+      - name: Export variables containing versions and filename
+        run: |
+          echo "RELEASE_VERSION=$VERSION"                                               >> $GITHUB_ENV
+          echo "BUILD_VERSION=$VERSION.$GITHUB_RUN_NUMBER"                              >> $GITHUB_ENV
+          echo "BUILD_DATE=$(date '+%Y%m%d')"                                           >> $GITHUB_ENV
+          echo "ARTIFACT_NAME=$PACKAGE_NAME-$VERSION-$GITHUB_RUN_NUMBER.$ARCH.rpm"      >> $GITHUB_ENV
+
+      - name: Replace version and build number with the RPM .spec file
+        run: |
+          sed -i "s/__NAME__/$PACKAGE_NAME/g" $PACKAGE_NAME/*.spec
+          sed -i "s/__DESC__/$DESCRIPTION/g" $PACKAGE_NAME/*.spec
+          sed -i "s/__LICENSE__/$LICENSE/g" $PACKAGE_NAME/*.spec
+          sed -i "s/__SOFTWARE_VERSION__/$VERSION/g" $PACKAGE_NAME/*.spec
+          sed -i "s/__RELEASE_VERSION__/$GITHUB_RUN_NUMBER/g" $PACKAGE_NAME/*.spec
+          sed -i "s/__DATE__/$BUILD_DATE/g" $PACKAGE_NAME/*.spec
+
+      - name: Build the RPM package
+        run: |
+          cd $PACKAGE_NAME
+          mkdir -p ./{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          cp -r files/ BUILD
+          rpmbuild -v -bb --target $ARCH --define "_topdir `pwd`" --define "package_files `pwd`/BUILD/files" rpm.spec
+          cd ..
+          mv $PACKAGE_NAME/RPMS/$ARCH/$ARTIFACT_NAME $ARTIFACT_NAME
+
+      - name: Output detail on the resulting package for debugging purpose
+        run: |
+          ls -l $ARTIFACT_NAME
+          rpm -qlpv $ARTIFACT_NAME
+          md5sum $ARTIFACT_NAME
+          sha256sum $ARTIFACT_NAME
+          export LOCAL_SHA256=$( sha256sum $ARTIFACT_NAME | cut -d " " -f1 )
+
+      - name: Upload artifacts to share data between jobs
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.PACKAGE_NAME }}
+          path: "*.rpm"
+
+      - name: Upload package PackageCloud.io
+        uses: danielmundi/upload-packagecloud@v1
+        with:
+          package-name: ${{ env.ARTIFACT_NAME }}
+          packagecloud-username: ${{ secrets.PACKAGECLOUD_USER }}
+          packagecloud-repo: ${{ env.REPO_NAME }}
+          packagecloud-distrib: ${{ matrix.DISTRIB }}
+          packagecloud-token: ${{ secrets.PACKAGECLOUD_TOKEN }}
+

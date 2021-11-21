@@ -7,7 +7,7 @@
 #   - PACKAGECLOUD_KEY
 #
 ##############################################################################################
-name: build
+name: build-debian-package
 
 on: [pull_request, push]
 

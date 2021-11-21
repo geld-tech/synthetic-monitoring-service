@@ -39,8 +39,11 @@ jobs:
 
       - name: Replace version and build number with the Debian control file
         run: |
+          sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" packages/DEBIAN/control
           sed -i "s/__VERSION__/$BUILD_VERSION/g" packages/DEBIAN/control
           sed -i "s/__DATE__/$BUILD_DATE/g" packages/DEBIAN/control
+          sed -i "s/__PACKAGE_DESC__/$DESCRIPTION/g" packages/DEBIAN/control
+          sed -i "s/__AUTHOR__/$AUTHOR/g" packages/DEBIAN/control
 
       - name: Build the Debian package
         run: |

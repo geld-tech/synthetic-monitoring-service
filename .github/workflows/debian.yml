@@ -41,8 +41,8 @@ jobs:
         run: |
           pwd
           ls -lsthR
-          sed -i "s/__VERSION__/$BUILD_VERSION/g" $PACKAGE_NAME/DEBIAN/control
-          sed -i "s/__DATE__/$BUILD_DATE/g" $PACKAGE_NAME/DEBIAN/control
+          sed -i "s/__VERSION__/$BUILD_VERSION/g" packages/DEBIAN/control
+          sed -i "s/__DATE__/$BUILD_DATE/g" packages/DEBIAN/control
 
       - name: Build the Debian package
         run: |

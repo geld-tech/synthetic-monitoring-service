@@ -47,7 +47,7 @@ jobs:
 
       - name: Build the Debian package
         run: |
-          cat packages//DEBIAN/control
+          chmod -R 0755 packages/DEBIAN/
           dpkg-deb --build packages/
           mv $PACKAGE_NAME.deb $ARTIFACT_NAME
 

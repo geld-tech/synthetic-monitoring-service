@@ -41,6 +41,8 @@ jobs:
 
       - name: Replace version and build number with the RPM .spec file
         run: |
+          pwd
+          ls -slthR
           sed -i "s/__NAME__/$PACKAGE_NAME/g" $PACKAGE_NAME/*.spec
           sed -i "s/__DESC__/$DESCRIPTION/g" $PACKAGE_NAME/*.spec
           sed -i "s/__LICENSE__/$LICENSE/g" $PACKAGE_NAME/*.spec

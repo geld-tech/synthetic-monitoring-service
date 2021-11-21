@@ -46,8 +46,10 @@ jobs:
 
       - name: Build the Debian package
         run: |
+          cd packages/DEBIAN/
           dpkg-deb --build $PACKAGE_NAME 
-          mv $PACKAGE_NAME.deb $ARTIFACT_NAME
+          mv $PACKAGE_NAME.deb ../../$ARTIFACT_NAME
+          cd ../..
 
       - name: Output detail on the resulting package for debugging purpose
         run: |

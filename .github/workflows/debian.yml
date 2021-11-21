@@ -49,7 +49,7 @@ jobs:
         run: |
           chmod -R 0755 packages/DEBIAN/
           dpkg-deb --build packages/
-          mv $PACKAGE_NAME.deb $ARTIFACT_NAME
+          mv packages.deb $ARTIFACT_NAME
 
       - name: Output detail on the resulting package for debugging purpose
         run: |

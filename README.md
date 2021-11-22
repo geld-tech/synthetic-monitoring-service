@@ -2,40 +2,8 @@
 
 ## Status
 
-<table>
-    <thead>
-      <tr class="table">
-        <th>Ubuntu/Debian</th>
-        <th>CentOS/Red Hat</th>
-        <th>Build Status</th>
-        <th>License</th>
-      </tr>
-    </thead>
-    <tbody class="odd">
-      <tr>
-        <td>
-            <a href="https://geldtech.jfrog.io/artifactory/geldtech-deb-repo-local/synthetic-monitoring-service#files">
-                <img src="https://api.bintray.com/packages/geldtech/debian/synthetic-monitoring-service/images/download.svg" alt="Download DEBs">
-            </a>
-        </td>
-        <td>
-            <a href="https://geldtech.jfrog.io/artifactory/geldtech-rpm-repo-local/synthetic-monitoring-service#files">
-                <img src="https://api.bintray.com/packages/geldtech/rpm/synthetic-monitoring-service/images/download.svg" alt="Download RPMs">
-            </a>
-        </td>
-        <td>
-            <a href="https://travis-ci.org/geld-tech/synthetic-monitoring-service">
-                <img src="https://travis-ci.org/geld-tech/synthetic-monitoring-service.svg?branch=master" alt="Build Status">
-            </a>
-        </td>
-        <td>
-            <a href="https://opensource.org/licenses/Apache-2.0">
-                <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="">
-            </a>
-        </td>
-      </tr>
-    </tbody>
-</table>
+* Ubuntu/Debian ![build](https://github.com/geld-tech/synthetic-monitoring-service/actions/workflows/debian.yml/badge.svg)
+* CentOS/Red Hat ![build](https://github.com/geld-tech/synthetic-monitoring-service/actions/workflows/rpm.yml/badge.svg)
 
 
 ## Description

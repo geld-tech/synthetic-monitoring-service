@@ -43,8 +43,8 @@ jobs:
         run: |
           pwd
           ls -slthR
-          sed -i "s/__NAME__/$PACKAGE_NAME/g" packages/RPM/*.spec
-          sed -i "s/__DESC__/$DESCRIPTION/g" packages/RPM/*.spec
+          sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" packages/RPM/*.spec
+          sed -i "s/__PACKAGE_DESC__/$DESCRIPTION/g" packages/RPM/*.spec
           sed -i "s/__LICENSE__/$LICENSE/g" packages/RPM/*.spec
           sed -i "s/__SOFTWARE_VERSION__/$VERSION/g" packages/RPM/*.spec
           sed -i "s/__RELEASE_VERSION__/$GITHUB_RUN_NUMBER/g" packages/RPM/*.spec

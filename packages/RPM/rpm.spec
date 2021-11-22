@@ -135,6 +135,6 @@ __PACKAGE_DIR__
 # changelog macro to comment on package revisions (date format important)
 ##############################################################################
 %changelog
-* Fri Apr 26 2018 zlig <noreply@gdevnet.com>
+* Mon Nov 22 2021 zlig <noreply@gdevnet.com>
 - Initial build
 
